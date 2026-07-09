@@ -26,8 +26,8 @@ app.use('/api', profileRoutes); // Make sure your routes use '/api' prefix
 
 // ---- ADD THIS SECTION ----
 // Root route – tell people the API is alive
-app.get('/', (req, res) => {
-  res.send('Profile Card API is running!');
+app.get('/(.*)', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
 // If you want to serve the React frontend from the same server:
