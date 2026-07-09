@@ -48,7 +48,10 @@ const ProfileForm = ({ setProfile }) => {
         data.append('image', imageFile);
       }
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      let apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      if (window.location.hostname === 'localhost' && apiUrl.includes('github.dev')) {
+        apiUrl = 'http://localhost:5000/api';
+      }
       const response = await axios.post(
         `${apiUrl}/profile`,
         data,
