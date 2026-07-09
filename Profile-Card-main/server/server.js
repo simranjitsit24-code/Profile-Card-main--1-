@@ -24,13 +24,10 @@ app.use(express.json());
 // API routes
 app.use('/api', profileRoutes); // Make sure your routes use '/api' prefix
 
-// ---- ADD THIS SECTION ----
-// Root route – tell people the API is alive
-app.get('/(.*)', (req, res) => {
+// matches everything, including root path '/'
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
